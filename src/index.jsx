@@ -62,7 +62,8 @@ export default class ModalVideo extends React.Component {
   getQueryString (obj) {
     let url = ''
     for (var key in obj) {
-      if (obj.hasOwnProperty(key)) {
+      // Filter unlisted_hash from query string
+      if (obj.hasOwnProperty(key) && key !== 'unlisted_hash') {
         if (obj[key] !== null) {
           url += key + '=' + obj[key] + '&'
         }
