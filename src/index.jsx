@@ -78,7 +78,11 @@ export default class ModalVideo extends React.Component {
 
   getVimeoUrl(vimeo, videoId) {
     const query = this.getQueryString(vimeo)
-    return '//player.vimeo.com/video/' + videoId + '?' + query
+    if (vimeo.unlisted_hash === null) {
+      return '//player.vimeo.com/video/' + videoId + '?' + query
+    }
+
+    return '//vimeo.com/' + videoId + '/' + vimeo.unlisted_hash + '?' + query
   }
 
   getYoukuUrl(youku, videoId) {
@@ -179,6 +183,7 @@ ModalVideo.defaultProps = {
     player_id: null,
     portrait: true,
     title: true,
+    unlisted_hash: null,
     width: null,
     xhtml: false
   },
